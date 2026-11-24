@@ -18,3 +18,8 @@ Depends on `window` and `sessionStorage`. Identical to `useLocal`, but depends o
 ## Independent Hooks
 ### useAsync
 Runs an async `useEffect`. Surprisingly not a thing.
+### useInterval
+Runs an interval. Also surprisingly not a thing.
+## With Hooks
+### withWindow
+Queues up operations to be ran on `window` once window exists. Can be a one-time operation.
