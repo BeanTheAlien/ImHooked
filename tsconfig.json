@@ -18,6 +18,6 @@
     "**/*.js",
     "**/*.ts",
     "**/*.mts"
-  ],
+, "comps.tsx"  ],
   "exclude": ["node_modules"]
 }
