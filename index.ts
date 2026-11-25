@@ -95,6 +95,9 @@ interface WithObject<T> {
     then<K extends keyof T>(objectKey: K, ...argList: T[K] extends (...args: infer A) => unknown ? A : never): WithObject<T>;
 }
 const __withFactory = <T>(src: T) => {
+    /**
+     * @param once Whether this should run once or not.
+     */
     return (once = false) => {
         const obj: WithObject<T> = {
             src,
