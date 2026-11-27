@@ -24,6 +24,11 @@ Runs an interval. Also surprisingly not a thing.
 ## With Hooks
 ### withWindow
 Queues up operations to be ran on `window` once window exists. Can be a one-time operation.
+## Mutating Hooks
+### useRequired
+Takes a form and a dependent object, as well as some possible values to exclude.\
+Sets the required attribute of the children on the form, such that it equals\
+the boolean value of the dependent.
 
 # Components
 ## Data Components

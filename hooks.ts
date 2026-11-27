@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children, isValidElement, JSX, RefObject } from "react";
 import { useEffect, useState } from "react";
 
 const __depFactory = (required: () => boolean) => {
@@ -131,3 +131,23 @@ const __withFactory = <T>(src: T) => {
  * @returns A `WithObject` for `window`.
  */
 export const withWindow = __withFactory(window);
+/**
+ * Applies the `required` attribute to the children of the form, such that the value is equal to the
+ * boolean value of `dep` (`!!dep`).
+ * 
+ * When `dep` is a real value, the required attribute is set to true. Otherwise, the required
+ * attribute is set to false.
+ * @param form The HTML form element or a reference to it.
+ * @param dep The dependent object.
+ * @param exclude Certain elements to be excluded from aquiring the `required` tag
+ * (either literal elements or references to them).
+ */
+export function useRequired<T>(form: JSX.IntrinsicElements["form"] | RefObject<JSX.IntrinsicElements["form"]>, dep: T | null | undefined, exclude?: (React.ReactElement | RefObject<React.ReactElement>)[]) {
+    useEffect(() => {
+        Children.map(("current" in form ? form.current : form)?.children, c => {
+            if(isValidElement<{ required?: boolean }>(c) && !(exclude ?? []).map(e => "current" in e ? e.current : e).includes(c)) {
+                c.props.required = !!dep;
+            }
+        });
+    }, [dep]);
+}
